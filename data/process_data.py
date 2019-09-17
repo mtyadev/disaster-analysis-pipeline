@@ -11,12 +11,31 @@ pd.set_option("display.max_colwidth", -1)
 pd.set_option("display.width",None)
 
 def load_data(messages_filepath, categories_filepath):
+    """Loads Data from two given data sources and merges them in single dataframe
+
+    Args:
+        messages_filepath (string): Filepath to messages_dataset
+        categories_filepath (string): Filepath to categories dataset
+
+    Returns:
+        dataframe: Merged Dataframe based on two given datasets
+    """
+
     messages = pd.read_csv(messages_filepath)
     categories = pd.read_csv(categories_filepath)
     df = pd.merge(messages,categories,on="id")
     return df
 
 def clean_data(df):
+    """Cleans given dataframe
+
+    Args:
+        df: Dataframe to be cleaned
+
+    Returns:
+        dataframe: Cleaned dataframe
+    """
+
     # create a dataframe of the 36 individual category columns
     categories = df.categories.str.split(";",expand=True)
 
@@ -65,6 +84,13 @@ def clean_data(df):
     return df
 
 def save_data(df, database_filename):
+    """Saves given dataframe to given database
+
+    Args:
+        df (dataframe): Dataframe to be saved in the database
+        database_filename (string): Filename of Database to store the dataframe
+    """
+
     engine = create_engine('sqlite:///{}'.format(database_filename))
     # Extracting tablename from database_filename path
     table_name = extract_table_name(database_filename)
@@ -72,6 +98,9 @@ def save_data(df, database_filename):
 
 def extract_table_name(database_filename):
     """Extracts a name of a table from a given database_filename
+
+    Args:
+        database_filename (string): Database from which table name is extracted
     """
 
     table_name = re.search("([^/]+)(\.db)",database_filename)
