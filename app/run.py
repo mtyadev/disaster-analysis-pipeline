@@ -65,6 +65,9 @@ def index():
         Args:
             genre (string): messages are categorized as 'direct','news','social'
             category_list (list): contains all available categories in dataset
+
+        Returns:
+            list: Sum of Messages belonging to a certain genre by category
         """
 
         sum_messages_by_genre = []
@@ -77,7 +80,7 @@ def index():
     news_messages = messages_by_genre('news',category_names)
     social_messages = messages_by_genre('social',category_names)
 
-    # Own Graph
+    # Generating Graphs to be displayed in flask app
     graphs = [
         {
             'data': [
