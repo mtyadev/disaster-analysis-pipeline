@@ -15,6 +15,17 @@ from sqlalchemy import create_engine
 app = Flask(__name__)
 
 def tokenize(text):
+    """Splits text into single words (tokens). Afterwards cleans tokens.
+    Reduces all tokens to their dictionary form by lemmatizing them.
+    Removes whitespaces and casts all tokens to lowercase.
+
+    Args:
+        text (string): Text to be tokenized and cleaned
+
+    Returns:
+        list: list of cleaned tokens
+    """
+
     tokens = word_tokenize(text)
     lemmatizer = WordNetLemmatizer()
 
@@ -48,6 +59,14 @@ def index():
     social_messages = []
 
     def messages_by_genre(genre,category_list):
+        """Analyzes the sum of messages belonging to a given genre for each
+        category in the dataset.
+
+        Args:
+            genre (string): messages are categorized as 'direct','news','social'
+            category_list (list): contains all available categories in dataset
+        """
+
         sum_messages_by_genre = []
         for category in category_list:
             sum_messages_by_category = df[(df['genre'] == genre) & (df[category] == 1)][category].sum()
