@@ -2,7 +2,7 @@
 
 ### Project Motivation
 
-Machine Learning based ETL pipeline analyzing incoming text messages which are sent in the event of natural disasters.
+Building a Machine Learning based ETL pipeline analyzing incoming text messages which are sent in the event of natural disasters.
 
 The aim is to provide a machine-learning based filter mechanism, consolidating the vast amount of incoming data in the disaster event. The algorithm should understand which incoming messages are related to which type of required aid so that help organizations can coordinate their efforts more efficiently.
 
