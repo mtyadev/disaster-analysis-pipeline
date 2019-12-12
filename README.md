@@ -14,6 +14,7 @@ This project was done as part of the <a href="https://www.udacity.com/course/dat
 ### Software Requirements
 
 * Python 3.x
+* Numpy & Pandas
 * Jupyter
 * Scikit Learn
 
